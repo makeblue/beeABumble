@@ -1,6 +1,6 @@
 # Bee A Bumble
 
-A static website for **Bee A Bumble** – pure raw honey and natural bee products.
+A static website for **Bee A Bumble** 
 
 ## Structure
 
