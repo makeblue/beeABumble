@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bumbleland — Welcome to the World of Bumblepals™</title>
+  <style>
+    /* ── Base reset & font ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fffdf0;
+      color: #3b2e00;
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #f9c93e 0%, #f5a623 60%, #e8872b 100%);
+      text-align: center;
+      padding: 3rem 1.5rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bee-mascot-corner {
+      position: absolute;
+      top: -0.5rem;
+      left: 1rem;
+      width: 110px;
+      opacity: 0.92;
+      pointer-events: none;
+      filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.18));
+    }
+
+    .bee-mascot-corner-right {
+      position: absolute;
+      top: -0.5rem;
+      right: 1rem;
+      width: 110px;
+      opacity: 0.92;
+      pointer-events: none;
+      filter: drop-shadow(-2px 4px 6px rgba(0,0,0,0.18));
+      transform: scaleX(-1);
+    }
+
+    header h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      color: #3b2e00;
+      letter-spacing: 0.04em;
+      text-shadow: 1px 2px 0 rgba(255,255,255,0.4);
+    }
+
+    header p.tagline {
+      margin-top: 0.6rem;
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      color: #5a3e00;
+      font-style: italic;
+    }
+
+    /* ── Main layout ── */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.7rem;
+      color: #c47a00;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: #4a3800;
+    }
+
+    /* ── Book card ── */
+    .book-card {
+      background: #fff8e1;
+      border: 2px solid #f9c93e;
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .book-card p {
+      font-size: 1.08rem;
+    }
+
+    .book-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      font-size: 0.92rem;
+      color: #7a5e00;
+    }
+
+    .book-meta span::before { content: "✦ "; color: #f5a623; }
+
+    /* ── Buy button ── */
+    .btn-buy {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background: #f5a623;
+      color: #3b2e00;
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: bold;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      border: 2px solid #d4830a;
+      transition: background 0.2s, transform 0.15s;
+      align-self: flex-start;
+    }
+
+    .btn-buy:hover {
+      background: #e8872b;
+      transform: translateY(-2px);
+    }
+
+    /* ── Donation section ── */
+    .donation-box {
+      background: #f0faf0;
+      border: 2px solid #6cbf6c;
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+    }
+
+    .donation-box p {
+      margin-bottom: 1.1rem;
+    }
+
+    /* Bar chart */
+    .chart-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .chart-label {
+      font-size: 0.95rem;
+      color: #2e5e2e;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+
+    .bar-track {
+      background: #c8e6c8;
+      border-radius: 999px;
+      height: 28px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      padding-left: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #fff;
+      transition: width 1.2s ease;
+      background: linear-gradient(90deg, #4caf50, #2e7d32);
+    }
+
+    .total-donated {
+      margin-top: 1.25rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #2e5e2e;
+      text-align: center;
+    }
+
+    .total-donated span {
+      font-size: 2rem;
+      color: #4caf50;
+    }
+
+    .bee-mascot-section {
+      display: block;
+      width: 64px;
+      height: auto;
+      filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.15));
+    }
+
+    .bee-mascot-inline {
+      width: 36px;
+      height: auto;
+      vertical-align: middle;
+      filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.12));
+    }
+
+    .pollinator-bee-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .pollinator-bee-item .bee-mascot-section {
+      margin-bottom: 0.4rem;
+    }
+    .about-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .about-list li {
+      background: #fff8e1;
+      border-radius: 10px;
+      border: 1px solid #f9c93e;
+      padding: 1rem 1.2rem;
+      font-size: 1rem;
+      color: #4a3800;
+    }
+
+    .about-list li span {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #3b2e00;
+      color: #f9c93e;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #f9c93e;
+    }
+
+    /* ── Responsive tweak ── */
+    @media (max-width: 500px) {
+      .btn-buy { align-self: stretch; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ───── Header ───── -->
+  <header>
+    <img src="images/bee2.png" alt="" role="presentation" class="bee-mascot-corner" />
+    <img src="images/bee2.png" alt="" role="presentation" class="bee-mascot-corner-right" />
+    <h1>Welcome to Bumbleland!</h1>
+    <p class="tagline">Where Bumblepals™ float, flutter, and buzz through the day&nbsp;…</p>
+  </header>
+
+  <main>
+
+    <!-- ───── About the Book ───── -->
+    <section>
+      <h2>📖 About the Book</h2>
+      <div class="book-card">
+        <p>
+          Step into <strong>Bumbleland</strong> — a whimsical world full of bumbleanimals called
+          <strong>Bumblepals™</strong>. Written in playful rhyme with a rhythmic bounce, this
+          bedtime story gently guides little ones from a busy, buzzing day to peaceful, dreamy
+          rest — while sparking curiosity about the amazing pollinators all around us.
+        </p>
+        <p>
+          Perfect for ages&nbsp;3 and up, <em>Bumbleland</em> is a celebration of imagination,
+          nature, and the tiny creatures who keep our world blooming.
+          <br /><br />
+          <em>"Which Bumble do you want to be?"</em>
+        </p>
+        <div class="book-meta">
+          <span>By Kimberly Welling &amp; Eric Snell</span>
+          <span>Ages 3 +</span>
+          <span>37 pages · 9 × 7 format</span>
+          <span>Published by Air &amp; Urth, LLC</span>
+          <span>Available in Print &amp; Kindle</span>
+        </div>
+        <a class="btn-buy"
+           href="https://www.amazon.com/dp/B0GPLVJ2KN?ref_=cm_sw_r_ffobk_cp_ud_dp_C19TYEP0E7A4V3MMC40M&bestFormat=true"
+           target="_blank" rel="noopener noreferrer">
+          🛒 Buy the Book on Amazon
+        </a>
+      </div>
+    </section>
+
+    <!-- ───── Why Pollinators Matter ───── -->
+    <section>
+      <h2>🌼 Why Pollinators Matter</h2>
+      <ul class="about-list">
+        <li class="pollinator-bee-item">
+          <img src="images/bee2.png" alt="Bumble bee" class="bee-mascot-section" />
+          Bees pollinate <strong>one-third</strong> of everything we eat.
+        </li>
+        <li>
+          <span>🦋</span>
+          Butterflies, moths &amp; beetles are pollinators too — all Bumblepals™ at heart!
+        </li>
+        <li>
+          <span>🌻</span>
+          Healthy pollinator populations mean healthy gardens, farms &amp; wild places.
+        </li>
+        <li>
+          <span>📚</span>
+          Stories like <em>Bumbleland</em> help children grow up caring about nature.
+        </li>
+      </ul>
+    </section>
+
+    <!-- ───── Giving Back ───── -->
+    <section>
+      <h2>💚 Giving Back to Pollinators</h2>
+      <div class="donation-box">
+        <p>
+          Every book sold helps us give back. We're proud to have donated to organizations
+          working to protect and restore pollinator habitats. Here's where we stand:
+        </p>
+
+        <div class="chart-wrap">
+          <div>
+            <div class="chart-label">
+              <span>Queen City Pollinator Project</span>
+              <span>$300</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 100%">$300</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="total-donated">
+          Total donated so far: <span>$300</span> <img src="images/bee2.png" alt="" role="presentation" class="bee-mascot-inline" />
+        </p>
+
+        <p style="text-align:center; font-size:0.95rem; color:#4a7c4a; margin-top:0.5rem;">
+          …and growing with every copy of <em>Bumbleland</em> sold!
+        </p>
+      </div>
+    </section>
+
+    <!-- ───── Get the Book ───── -->
+    <section style="text-align: center;">
+      <h2 style="justify-content: center;">🛒 Ready to Buzz Into Bumbleland?</h2>
+      <p style="margin-bottom: 1.25rem;">
+        Grab your copy today — in print or on Kindle — and let the adventure begin!
+      </p>
+      <a class="btn-buy"
+         href="https://www.amazon.com/dp/B0GPLVJ2KN?ref_=cm_sw_r_ffobk_cp_ud_dp_C19TYEP0E7A4V3MMC40M&bestFormat=true"
+         target="_blank" rel="noopener noreferrer"
+         style="font-size: 1.3rem; padding: 1rem 2.5rem;">
+        🛒 Buy the Book on Amazon
+      </a>
+    </section>
+
+  </main>
+
+  <!-- ───── Footer ───── -->
+  <footer>
+    <p>© <script>document.write(new Date().getFullYear())</script> Air &amp; Urth, LLC · <em>Bumbleland</em> by Kimberly Welling &amp; Eric Snell</p>
+    <p style="margin-top:0.4rem; font-size:0.82rem; opacity:0.75;">
+      Questions? Reach us at
+      <a href="mailto:hello@beeabumble.com">hello@beeabumble.com</a>
+    </p>
+  </footer>
+
+</body>
+</html>
