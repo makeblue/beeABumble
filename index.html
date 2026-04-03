@@ -24,23 +24,25 @@
       overflow: hidden;
     }
 
-    header::before {
-      content: "🐝";
-      font-size: 5rem;
+    .bee-mascot-corner {
       position: absolute;
-      top: 0.5rem;
-      left: 1.5rem;
-      opacity: 0.25;
+      top: -0.5rem;
+      left: 1rem;
+      width: 110px;
+      opacity: 0.92;
       pointer-events: none;
+      filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.18));
     }
-    header::after {
-      content: "🌸";
-      font-size: 4rem;
+
+    .bee-mascot-corner-right {
       position: absolute;
-      bottom: 0.5rem;
-      right: 2rem;
-      opacity: 0.25;
+      top: -0.5rem;
+      right: 1rem;
+      width: 110px;
+      opacity: 0.92;
       pointer-events: none;
+      filter: drop-shadow(-2px 4px 6px rgba(0,0,0,0.18));
+      transform: scaleX(-1);
     }
 
     header h1 {
@@ -188,7 +190,29 @@
       color: #4caf50;
     }
 
-    /* ── About section ── */
+    .bee-mascot-section {
+      display: block;
+      width: 64px;
+      height: auto;
+      filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.15));
+    }
+
+    .bee-mascot-inline {
+      width: 36px;
+      height: auto;
+      vertical-align: middle;
+      filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.12));
+    }
+
+    .pollinator-bee-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .pollinator-bee-item .bee-mascot-section {
+      margin-bottom: 0.4rem;
+    }
     .about-list {
       list-style: none;
       padding: 0;
@@ -235,6 +259,8 @@
 
   <!-- ───── Header ───── -->
   <header>
+    <img src="images/bee-mascot.svg" alt="" role="presentation" class="bee-mascot-corner" />
+    <img src="images/bee-mascot.svg" alt="" role="presentation" class="bee-mascot-corner-right" />
     <h1>🐝 Welcome to Bumbleland!</h1>
     <p class="tagline">Where Bumblepals™ float, flutter, and buzz through the day&nbsp;…</p>
   </header>
@@ -276,8 +302,8 @@
     <section>
       <h2>🌼 Why Pollinators Matter</h2>
       <ul class="about-list">
-        <li>
-          <span>🐝</span>
+        <li class="pollinator-bee-item">
+          <img src="images/bee-mascot.svg" alt="Bumble bee" class="bee-mascot-section" />
           Bees pollinate <strong>one-third</strong> of everything we eat.
         </li>
         <li>
@@ -317,7 +343,7 @@
         </div>
 
         <p class="total-donated">
-          Total donated so far: <span>$300</span> 🐝
+          Total donated so far: <span>$300</span> <img src="images/bee-mascot.svg" alt="" role="presentation" class="bee-mascot-inline" />
         </p>
 
         <p style="text-align:center; font-size:0.95rem; color:#4a7c4a; margin-top:0.5rem;">
