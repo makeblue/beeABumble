@@ -253,9 +253,45 @@
       color: #f9c93e;
     }
 
+    /* ── Book cover banner (below header) ── */
+    .book-cover-banner {
+      width: 100%;
+      line-height: 0;
+      background: #3b2e00;
+    }
+
+    .book-cover-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Bumble B in header title ── */
+    .title-b-img {
+      height: 0.9em;
+      width: auto;
+      vertical-align: -0.05em;
+      filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.22));
+    }
+
+    /* ── Bumbledog ── */
+    .bumbledog-wrap {
+      float: right;
+      margin: 0 0 1rem 1.5rem;
+      width: 160px;
+    }
+
+    .bumbledog-wrap img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.15));
+    }
+
     /* ── Responsive tweak ── */
     @media (max-width: 500px) {
       .btn-buy { align-self: stretch; text-align: center; }
+      .bumbledog-wrap { float: none; margin: 0 auto 1.25rem; display: block; width: 130px; }
     }
   </style>
 </head>
@@ -265,9 +301,14 @@
   <header>
     <img src="images/bee2.png" alt="" role="presentation" class="bee-mascot-corner" />
     <img src="images/bee2.png" alt="" role="presentation" class="bee-mascot-corner-right" />
-    <h1>Welcome to Bumbleland!</h1>
+    <h1>Welcome to <img src="images/Bumble B-with wings.png" alt="B" class="title-b-img">umbleland!</h1>
     <p class="tagline">Where Bumblepals™ float, flutter, and buzz through the day&nbsp;…</p>
   </header>
+
+  <!-- ───── Book Cover Banner ───── -->
+  <div class="book-cover-banner">
+    <img src="images/Book Cover (17.339 x 6.85 in)-noISBN.png" alt="Bumbleland — full book cover spread" />
+  </div>
 
   <main>
 
@@ -275,6 +316,9 @@
     <section>
       <h2>📖 About the Book</h2>
       <div class="book-card">
+        <div class="bumbledog-wrap">
+          <img src="images/bumbledog.png" alt="Bumbledog — a Bumblepal character" />
+        </div>
         <p>
           Step into <strong>Bumbleland</strong> — a whimsical world full of bumbles. Written in playful rhyme with a rhythmic bounce, this
           bedtime story gently guides little ones from a busy, buzzing day to peaceful, dreamy
